@@ -2,7 +2,7 @@ import paho.mqtt.client as mqtt
 
 broker = "localhost"
 port = 1883
-topic = "mqtt/sampletopic"
+topic = "sampletopic"
 
 def on_message(client, userdata, message):
     print(f"Message received: {message.payload.decode()}")

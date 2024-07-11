@@ -1,9 +1,10 @@
 import paho.mqtt.client as mqtt
 import time
+import json
 
 broker = "localhost"
 port = 1883
-topic = "mqtt/sampletopic"
+topic = "sampletopic"
 
 client = mqtt.Client()
 
@@ -20,10 +21,11 @@ client.connect(broker, port, 60)
 value = 0
 while True:
     value = value + 1
-    message = f"Message {value}"
+
+    message = {"val1": value}
     client.loop_start()
-    client.publish(topic, message)
+    client.publish(topic,  payload=json.dumps(message))
     client.loop_stop()
-    time.sleep(2)
+    time.sleep(1)
 
 client.disconnect()
